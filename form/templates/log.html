@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student info</title>
+    <style>
+        *{
+            padding: 0;
+         
+            margin: 0;
+        }
+
+        .container{
+            
+            width: 100vw;
+            height: 100vh;
+           background-size: cover;
+           color: white;
+          background-image: url("{% static 'mass.jpg' %}");
+        }
+        .class{
+            width: 100vw;
+            height:30vh;
+         
+            font-family: sans-serif;
+
+        }
+        .align{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 20px;
+            
+            width: 100vw;
+            height: 20vh;
+
+        }
+        #school{
+            color: white;
+            font-size: 50px;
+            text-align: center;
+            line-height: 60px;
+        }
+        #setion{
+            border-radius: 50px;
+            height: 35px;
+            font-weight: 700;
+        }
+        .option{
+            font-weight: 700;
+        }
+        .circle{
+            height: 20px;
+            width: 20px;
+        }
+        #confm{
+            border-radius: 50px;
+            padding: 8px;
+            background-color: black;
+            color: aliceblue;
+            font-family: sans-serif;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-right: 100px;
+            display: inline;
+            border-color: aliceblue;
+        }
+        #confm:hover{
+            background-color:red;
+            border-color: red;
+            cursor: pointer;
+        }
+        #back{
+            
+                border-radius: 50px;
+                padding: 8px;
+                background-color: black;
+                color: aliceblue;
+                font-family: sans-serif;
+                font-weight: 700;  
+                display: flex; 
+                margin-left: 50%;
+                margin-top: -2.5%;
+                border-color: aliceblue;
+                         
+        }
+        #back:hover{
+            background-color:red;
+            border-color: red;
+            cursor: pointer;
+        }
+        a{
+        text-decoration: none;
+        }
+        .hed{
+            font-family: sans-serif;
+            
+        }
+        table,tr,th,td{
+            border: 2px solid white;
+            border-collapse: collapse;
+            padding: 10px;
+            font-family: sans-serif;
+            font-size: 20px;
+        }
+        table{
+            margin-left: 200px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="list">
+        <h1 id="school">ABC SCHOOL</h1><br>
+        <div class="class">
+            <h1>Name Of The Student</h1>
+            <div class="align">
+        <form action="getclass" method="post">{% csrf_token %}
+            <label for="">Select class:</label>
+            <select name="option" id="setion">
+                <option value="LKG" class="option">LKG</option>
+                <option value="UKG" class="option">UKG</option>
+                <option value="1ST" class="option">1ST</option>
+                <option value="2ND" class="option">2ND</option>
+                <option value="3RD" class="option">3RD</option>
+                <option value="4TH" class="option">4TH</option>
+                <option value="5TH" class="option">5TH</option>
+            </select>
+            <label for="">A</label>
+            <input type="radio" name="section" value="A" class="circle">
+            <label for="">B</label>
+            <input type="radio" name="section" value="B" class="circle">
+            <label for="">C</label>
+            <input type="radio" name="section" value="C" class="circle"><br>
+            <input type="submit" value="CONFIRM" id="confm">
+        </form><form action="log"><button id="back" value="back" name="back">BACK</button></form></div></div>
+        <h1 class="hed">Students Name List :</h1><br>
+        <table>
+            <tr>
+                <th>S.No</th>
+                <th>Student Name</th>
+                <th>Roll Number</th>
+            </tr>
+         
+            {% for i in names %}
+            
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.roll}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+     
+    </div>
+    
+</body>
+</html>
